@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>home Work</title>
+	<script type="text/javascript" src="vue.min.js"></script>
+	<link rel="stylesheet" href="bootstrap.min.css">
+</head>
+<body>
+	<div class="container col-12 mt-5">
+		<div class="row col-6 offset-3">
+			<div id="app">
+				<div class="card mt-2" style="box-shadow: 5px 5px gray;">
+					<div class="card-header text-center ">
+						{{message}}
+					</div>
+					<div class="card-body">
+						<form>
+							<h5>Hight</h5>
+							<div class="form-row">
+								
+								<div class="col-6">
+									<label>(Feets)</label>
+									<input type="number" class="form-control" v-model="feet" >
+								</div>
+								<div class="col-6">
+									<label>(inches)</label>
+									<input type="number" class="form-control" v-model="inches" >
+								</div>
+								<div class=" col-12 mt-3">
+									<label><h5>Weight</h5> (pounds)</label>
+									<input type="number" class="form-control" v-model="weight" >
+							</div>
+								
+							</div >
+							<div id="hide">
+							<p class="mt-3" v-if="result==0" style="color: black;" >Your Health Result</p>
+							<p class="mt-3" v-else-if="result<19" style="background-color: blue;" >Under Wight</p>
+							<p class="mt-3" v-else-if="result<24" style="background-color: green;" >Normal Wight</p>
+							<p class="mt-3" v-else-if="result<29" style="background-color: yellow;" >Over Wight</p>
+							<p class="mt-3" v-else="result<30" style="background-color: red;" >Obesity</p>
+							</div>
+						</form>
+						<a v-on:click="calculate" class="btn btn-primary mt-2">Calculate</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+
+
+	<script type="text/javascript">
+
+		var app = new Vue({
+		  el: '#app',
+		  data: {
+		    message: 'BMI Calculate',
+		    feet:null,
+		    inches:null,
+		    weight:null,
+		    result:''
+		  },
+		  methods:{
+		  	calculate:function(){
+		  		var feet = parseInt(this.feet);
+		  		var inches = parseInt(this.inches);
+		  		var weight = parseInt(this.weight)*703;
+		  		var hight = (feet*12);
+		  		var hight1= (hight + inches);
+		  		var hight2 =(hight1*hight1);
+		  		var final =(weight/hight2);
+
+		  		this.result=final;
+		  	}
+		  }
+		})
+
+	</script>
+	<script src="jquery-3.3.1.min.js"></script>
+	<script src="bootstrap.min.js"></script>
+</body>
+</html>
